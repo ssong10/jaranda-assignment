@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import Button from './button';
 import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import Login from '../Pages/Main/Login';
-import LoginModal from '../Pages/Main/LoginModal';
+import Login from 'Pages/Main/Login';
+import LoginModal from 'Pages/Main/LoginModal';
 import { userStorage } from 'store';
 import { ROLE } from 'constant/role';
 import { ROUTES_PATH } from 'constant/routesPath'
@@ -48,7 +48,7 @@ function Header({ history }) {
     const user = Login({ userName, password });
     if (user) {
       userStorage.save(user);
-      history.push('/')
+      history.push(ROUTES_PATH.MAIN)
     } else {
       throw new Error();
     }

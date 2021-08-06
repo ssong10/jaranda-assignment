@@ -7,6 +7,7 @@ import Button from 'Components/button';
 import SelectRole from 'Components/selectRole';
 import { cardNumberFormat } from 'utils/format';
 import { userListStorage } from 'store';
+import { userStorage } from 'store';
 
 const ImageWrapper = styled.div`
   margin-bottom: 30px;
@@ -76,6 +77,7 @@ const CloseImg = styled.img`
   cursor: pointer;
 `;
 const UserModal = ({ show, toggleModal, user, setUserList }) => {
+  const currentUser = userStorage.load()
   const [userState, setUserState] = useState(user);
   useEffect(() => {
     setUserState(user);
@@ -87,6 +89,10 @@ const UserModal = ({ show, toggleModal, user, setUserList }) => {
     setUserState({ ...userState, role: value });
   };
   const changeUserData = () => {
+    if (user.id === currentUser.id) {
+      alert('본인 정보를 수정할 수 없습니다.')
+      return
+    }
     let changeData = '';
     if (userState.role !== user.role) {
       changeData += `권한이 ${ROLE[userState.role]}로 바뀌었습니다.`;
