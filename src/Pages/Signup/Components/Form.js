@@ -77,6 +77,7 @@ function Form() {
       address: address,
       cardNumber: card,
       accessMenus: [],
+      role : 0,
       isAdmin: false,
     }
   }
